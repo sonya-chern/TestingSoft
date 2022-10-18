@@ -3,6 +3,8 @@
   "isRemote": false,
   "remoteConnectionUrl": "http://85.113.47.244:23480",
   "isElementHighlightEnabled": false,
+  "login": null,
+  "password": null,
 
   "driverSettings": {
     "chrome": {
