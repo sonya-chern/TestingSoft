@@ -8,14 +8,13 @@ namespace TestingSoft.TestClasses
     public class StateTechnicalSupervisionTest : BaseTestClasse
     {
         private readonly AuthorizationPage authorizationPage = new AuthorizationPage();
+        private readonly PersonPage personPage = new PersonPage();
         private readonly MainMenu mainMenu = new MainMenu();
 
         [Test]
-        public void CheckAuthorizationFormPozitive()
+        public void CheckAuthorizationFormPositive()
         {
-            authorizationPage.FillLogin(Settings.Login);
-            authorizationPage.FillPassword(Settings.Password);
-            authorizationPage.ClickEnter();
+            LogIn(Settings.Login, Settings.Password);            
             Assert.IsTrue(mainMenu.State.WaitForDisplayed(), "Authorization is not passed");
         }
 
@@ -27,6 +26,24 @@ namespace TestingSoft.TestClasses
             var actualTextFromError = authorizationPage.GetTexFromErrorPasswordTextBox();
             Assert.AreEqual(TestDataConfig.errorMessage, actualTextFromError, 
                 $"Expected error message: {TestDataConfig.errorMessage} but was {actualTextFromError}");
+        }
+
+        [Test]
+        public void CheckPersonCreationPositive()
+        {
+            LogIn(Settings.Login, Settings.Password);
+            mainMenu.ClickOperationsBtn();
+            mainMenu.ClickPersonListBtn();
+            Assert.IsTrue(personPage.State.WaitForDisplayed(), "Person page is not display");
+            personPage.ClickAddBtn();
+            personPage.ClickPhysicalPersonBtn();
+        }
+
+        private void LogIn(string login, string password)
+        {
+            authorizationPage.FillLogin(login);
+            authorizationPage.FillPassword(password);
+            authorizationPage.ClickEnter();
         }
     }
 }

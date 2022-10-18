@@ -7,12 +7,12 @@ namespace TestingSoft.PageObjects
 {
     public class AuthorizationPage : Form
     {
-        private ITextBox LoginField => ElementFactory.GetTextBox(By.XPath("//input[@id='inputLogin']"), "LoginField");
-        private ITextBox PasswordField => ElementFactory.GetTextBox(By.XPath("//input[@id='inputPassword']"), "PasswordField");
+        private ITextBox LoginField => ElementFactory.GetTextBox(By.Id("inputLogin"), "LoginField");
+        private ITextBox PasswordField => ElementFactory.GetTextBox(By.Id("inputPassword"), "PasswordField");
         private ITextBox ErrorPasswordTextBox => ElementFactory.GetTextBox(By.XPath("//div[@id = 'Password']//span[@id = 'helpBlock']"), "ErrorPasswordTexBox");
-        private IButton EnterBtn => ElementFactory.GetButton(By.XPath("//button[@id='loginButton']"), "LoginButton");
+        private IButton EnterBtn => ElementFactory.GetButton(By.Id("loginButton"), "LoginButton");
 
-        public AuthorizationPage() : base(By.XPath(@"//input[@id='inputLogin']"), "mainPage")
+        public AuthorizationPage() : base(By.Id("inputLogin"), "AuthorizationPage")
         {
         }
 
